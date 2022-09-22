@@ -41,6 +41,19 @@ public class UserServlet extends SlingSafeMethodsServlet {
     @Override
     protected void doGet(final SlingHttpServletRequest req,
             final SlingHttpServletResponse resp) throws ServletException, IOException {
-        // Make use of ContentService to write the business logic
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String age = req.getParameter("age");
+        resp.setContentType("text/plain");
+        if(!firstName.isEmpty() && !lastName.isEmpty() && !age.isEmpty()) {
+            if (contentService.commitUserDetails(firstName, lastName, age)) {
+                resp.getWriter().write("OK");
+                resp.setStatus(200);
+            }else{
+                resp.getWriter().write("NOT OK - FAILURE IN CONTENT SERVICES");
+                resp.setStatus(500);
+            }
+        }
+
     }
 }

@@ -1,0 +1,10 @@
+var workflowData = graniteWorkItem.getWorkflowData();
+if (workflowData.getPayloadType() == "JCR_PATH") {
+    var path = workflowData.getPayload().toString();
+    var jcrsession = graniteWorkflowSession.adaptTo(Packages.javax.jcr.Session);
+    var node = jcrsession.getNode(path).getNode("jcr:content");
+    if (!node.hasProperty("foo")){
+            node.setProperty("pageCreated", true);
+            node.save();
+    }
+}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <filter root="/apps/anf-code-challenge"/>
+    <filter root="/apps/workflow" mode="merge"/>
     <filter root="/etc/age" mode="merge"/>
 </workspaceFilter>
